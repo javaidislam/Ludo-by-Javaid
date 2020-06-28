@@ -2,22 +2,25 @@ use std::io;
 use std::collections::HashMap;
 use rand::Rng;
 use std::convert::TryInto;
+use std::process;
 
 fn main() {
     println!("Welcome to the game!");
     println!("Please enter numbers of players");
     let mut no_players = String::new();
     io::stdin().read_line(&mut no_players).expect("error in reading");
-    let no_players: i32 = no_players.trim().parse().expect("Please type a numeric value greater than zero!");
-    //match no_players.trim().parse() {
-      //  Ok(n) =>no_players,
-        //Err(_) => {
-          //  println!("Error please enter numeric value. The program will end here");
-            //break;
-        //}
-
-
-    //}
+    //let no_players: i32 = no_players.trim().parse().expect("Please type a numeric value greater than zero!");
+    let no_players = match no_players.trim().parse() {
+      Ok(n) => { n },
+        Err(_) => {
+        println!("Error please enter numeric value. The program will end here");
+        println!("Press enter to end");
+        let mut game_cont = String::new();
+        io::stdin().read_line(&mut game_cont).expect("Exit due to error");
+        0;
+        process::exit(0)
+        }
+    };
     let mut player_names:Vec<String> = Vec::new();
     let mut player_total :Vec<u32> = Vec::new();
     let max_score = 3;
