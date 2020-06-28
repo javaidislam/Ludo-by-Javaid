@@ -9,6 +9,15 @@ fn main() {
     let mut no_players = String::new();
     io::stdin().read_line(&mut no_players).expect("error in reading");
     let no_players: i32 = no_players.trim().parse().expect("Please type a numeric value greater than zero!");
+    //match no_players.trim().parse() {
+      //  Ok(n) =>no_players,
+        //Err(_) => {
+          //  println!("Error please enter numeric value. The program will end here");
+            //break;
+        //}
+
+
+    //}
     let mut player_names:Vec<String> = Vec::new();
     let mut player_total :Vec<u32> = Vec::new();
     let max_score = 3;
