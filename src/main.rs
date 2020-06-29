@@ -26,7 +26,15 @@ fn main() {
     let max_score = 3;
     let mut winner_score = 0;
     let mut turn_count = 1;
-    
+    let ladder_1_start = 2;
+    let ladder_1_end = 50;
+    let ladder_2_start = 56;
+    let ladder_2_end = 88;
+    let snake_1_start = 51;
+    let snake_1_end = 17;
+    let snake_2_start = 99;
+    let snake_2_end = 3;
+  
     //let participants = HashMap::new();
     let mut i = 1;
     for names in (0..no_players) {
@@ -61,13 +69,32 @@ fn main() {
                     }
                 }
             }
+            let mut player_turn = String::new();
+            println!("{:?} Press Enter for your turn ",player_names[j]);
+            io::stdin().read_line(&mut player_turn).expect("Error at Line 66");
             player_total[j] = player_total[j] + turn_score;
+            if player_total[j] == ladder_1_start {
+                player_total[j] = ladder_1_end;
+                println!("Congrats!!!!!!!....... {:?} found a ladder ", player_names[j]);
+            }
+            if player_total[j] == ladder_2_start {
+                player_total[j] = ladder_2_end;
+                println!("Congrats!!!!!!!....... {:?} found a ladder ", player_names[j]);
+            }
+            if player_total[j] == snake_1_start {
+                player_total[j] = snake_1_end;
+                println!("Ohhhhh Shittt!!!!!...... {:?} found a snake ", player_names[j]);
+            }
+            if player_total[j] == snake_2_start {
+                player_total[j] = snake_2_end;
+                println!("Ohhhhh Shittt!!!!!...... {:?} found a snake ", player_names[j]);
+            }
             if player_total[j]> 100 {
                 player_total[j] = player_total[j] - turn_score;
             }
-            println!("Score of player {} for turn count {} is {} and total score is {}",player_names[j],turn_count,turn_score,player_total[j]);
+            println!("Score of player {:?} for turn count {} is {} and total score is {}",player_names[j],turn_count,turn_score,player_total[j]);
             if player_total[j] > 99 { 
-                println!("Player {} won on turn no {} with total score {}", player_names[j],turn_count,player_total[j]);
+                println!("Player {:?} won on turn no {} with total score {}", player_names[j],turn_count,player_total[j]);
                 winner_score = player_total[j];
                 break ;
             } 
@@ -88,8 +115,8 @@ fn main() {
         turn_count +=1;
         
         let mut game_cont = String::new();
-        println!("Press Enter for next dice roll");
-        io::stdin().read_line(&mut game_cont).expect("please re enter name");
+        //println!("Press Enter for next dice roll");
+        //io::stdin().read_line(&mut game_cont).expect("please re enter name");
     }
     println!("Game End");
 }
